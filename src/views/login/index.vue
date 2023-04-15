@@ -7,9 +7,9 @@
                ref="loginForm"
                label-position="left">
         <div style="text-align: center">
-          <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #409EFF"></svg-icon>
+          <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #4193a8"></svg-icon>
         </div>
-        <h2 class="login-title color-main">mall-admin-web</h2>
+        <h2 class="login-title color-main">线上营销后台管理系统</h2>
         <el-form-item prop="username">
           <el-input name="username"
                     type="text"
@@ -37,11 +37,11 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 45%" type="primary" :loading="loading" @click.native.prevent="handleLogin">
+          <el-button style="width: 45%;color: #4193a8" type="primary" :loading="loading" @click.native.prevent="handleLogin" plain>
             登录
           </el-button>
-          <el-button style="width: 45%" type="primary" @click.native.prevent="handleTry">
-            获取体验账号
+          <el-button style="width: 45%;color: #4193a8" type="primary" @click.native.prevent="handleTry" plain>
+            注册
           </el-button>
         </el-form-item>
       </el-form>
@@ -68,7 +68,7 @@
 <script>
   import {isvalidUsername} from '@/utils/validate';
   import {setSupport,getSupport,setCookie,getCookie} from '@/utils/support';
-  import login_center_bg from '@/assets/images/login_center_bg.png'
+  import login_center_bg from '@/assets/images/login_center_bg1.png'
 
   export default {
     name: 'login',
@@ -166,7 +166,7 @@
     right: 0;
     width: 360px;
     margin: 140px auto;
-    border-top: 10px solid #409EFF;
+    border-top: 10px solid #4193a8;
   }
 
   .login-title {
@@ -174,7 +174,7 @@
   }
 
   .login-center-layout {
-    background: #409EFF;
+    background: #4193a8;
     width: auto;
     height: auto;
     max-width: 100%;

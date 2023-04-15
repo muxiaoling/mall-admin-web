@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="address-layout">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="out-border">
             <div class="layout-title">后台项目</div>
             <div class="color-main address-content">
@@ -10,7 +10,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="out-border">
             <div class="layout-title">前端项目</div>
             <div class="color-main address-content">
@@ -18,7 +18,7 @@
             </div>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="out-border">
             <div class="layout-title">学习教程</div>
             <div class="color-main address-content">
@@ -30,25 +30,25 @@
     </div>
     <div class="total-layout">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="total-frame">
             <img :src="img_home_order" class="total-icon">
             <div class="total-title">今日订单总数</div>
             <div class="total-value">200</div>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="total-frame">
             <img :src="img_home_today_amount" class="total-icon">
             <div class="total-title">今日销售总额</div>
             <div class="total-value">￥5000.00</div>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
           <div class="total-frame">
-            <img :src="img_home_yesterday_amount" class="total-icon">
-            <div class="total-title">昨日销售总额</div>
-            <div class="total-value">￥5000.00</div>
+            <img :src="img_home_all_amount" class="total-icon">
+            <div class="total-title">本周销售总额</div>
+            <div class="total-value">￥50000.00</div>
           </div>
         </el-col>
         <!--<el-col :span="6">-->
@@ -61,13 +61,13 @@
         <!--</el-col>-->
       </el-row>
     </div>
-    <el-card class="mine-layout">
+<!--    <el-card class="mine-layout">
       <div style="text-align: center">
         <img width="150px" height="150px" src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg">
       </div>
       <div style="text-align: center">mall全套学习教程连载中！</div>
       <div style="text-align: center;margin-top: 5px"><span class="color-main">关注公号</span>，第一时间获取。</div>
-    </el-card>
+    </el-card>-->
     <div class="un-handle-layout">
       <div class="layout-title">待处理事务</div>
       <div class="un-handle-content">
@@ -248,7 +248,7 @@
   import {str2Date} from '@/utils/date';
   import img_home_order from '@/assets/images/home_order.png';
   import img_home_today_amount from '@/assets/images/home_today_amount.png';
-  import img_home_yesterday_amount from '@/assets/images/home_yesterday_amount.png';
+  import img_home_all_amount from '@/assets/images/home_all_amount.png';
   const DATA_FROM_BACKEND = {
     columns: ['date', 'orderCount','orderAmount'],
     rows: [
@@ -312,7 +312,7 @@
         dataEmpty: false,
         img_home_order,
         img_home_today_amount,
-        img_home_yesterday_amount
+        img_home_all_amount
       }
     },
     created(){
@@ -405,7 +405,7 @@
   .layout-title {
     color: #606266;
     padding: 15px 20px;
-    background: #F2F6FC;
+    background: #e1f7fc;
     font-weight: bold;
   }
 
