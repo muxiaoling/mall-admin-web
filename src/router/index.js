@@ -40,7 +40,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/pms/product',
     name: 'pms',
-    meta: {title: '商品', icon: 'product'},
+    meta: {title: '营销商品', icon: 'product'},
     children: [{
       path: 'product',
       name: 'product',
@@ -134,7 +134,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/oms/order',
     name: 'oms',
-    meta: {title: '订单', icon: 'order'},
+    meta: {title: '营销订单', icon: 'order'},
     children: [
       {
         path: 'order',
@@ -188,7 +188,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/sms/coupon',
     name: 'sms',
-    meta: {title: '营销', icon: 'sms'},
+    meta: {title: '营销项目', icon: 'sms'},
     children: [
       {
         path: 'flash',
@@ -295,7 +295,7 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/ums/admin',
     name: 'ums',
-    meta: {title: '权限', icon: 'ums'},
+    meta: {title: '权限管理', icon: 'ums'},
     children: [
       {
         path: 'admin',

@@ -9,7 +9,7 @@
         <div style="text-align: center">
           <svg-icon icon-class="login-mall" style="width: 56px;height: 56px;color: #4193a8"></svg-icon>
         </div>
-        <h2 class="login-title color-main">线上营销后台管理系统</h2>
+        <h2 class="login-title color-main">营销统计后台管理系统</h2>
         <el-form-item prop="username">
           <el-input name="username"
                     type="text"
@@ -37,31 +37,17 @@
           </el-input>
         </el-form-item>
         <el-form-item style="margin-bottom: 60px;text-align: center">
-          <el-button style="width: 45%;color: #4193a8" type="primary" :loading="loading" @click.native.prevent="handleLogin" plain>
+          <el-button style="width: 80%;color: #4193a8" type="primary" :loading="loading" @click.native.prevent="handleLogin" plain>
             登录
           </el-button>
-          <el-button style="width: 45%;color: #4193a8" type="primary" @click.native.prevent="handleTry" plain>
-            注册
-          </el-button>
+<!--          <el-button style="width: 45%;color: #4193a8" type="primary" @click.native.prevent="handleTry" plain>-->
+<!--            注册-->
+<!--          </el-button>-->
         </el-form-item>
       </el-form>
     </el-card>
     <img :src="login_center_bg" class="login-center-layout">
-    <el-dialog
-      title="公众号二维码"
-      :visible.sync="dialogVisible"
-      :show-close="false"
-      :center="true"
-      width="30%">
-      <div style="text-align: center">
-        <span class="font-title-large"><span class="color-main font-extra-large">关注公众号</span>回复<span class="color-main font-extra-large">体验</span>获取体验账号</span>
-        <br>
-        <img src="http://macro-oss.oss-cn-shenzhen.aliyuncs.com/mall/banner/qrcode_for_macrozheng_258.jpg" width="160" height="160" style="margin-top: 10px">
-      </div>
-      <span slot="footer" class="dialog-footer">
-    <el-button type="primary" @click="dialogConfirm">确定</el-button>
-      </span>
-    </el-dialog>
+
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <div class="address-layout">
+    <!--<div class="address-layout">
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="out-border">
@@ -27,28 +27,28 @@
           </div>
         </el-col>
       </el-row>
-    </div>
-    <div class="total-layout">
+    </div>-->
+    <div class="total-layout" v-if="homeFrontShow">
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="total-frame">
             <img :src="img_home_order" class="total-icon">
-            <div class="total-title">今日订单总数</div>
-            <div class="total-value">200</div>
+            <div class="total-title">今日营销订单总量</div>
+            <div class="total-value">{{homeFrontShow.todayOrderCount}}</div>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="total-frame">
             <img :src="img_home_today_amount" class="total-icon">
-            <div class="total-title">今日销售总额</div>
-            <div class="total-value">￥5000.00</div>
+            <div class="total-title">今日营销总额</div>
+            <div class="total-value">￥{{homeFrontShow.todayTotalSales}}</div>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="total-frame">
             <img :src="img_home_all_amount" class="total-icon">
-            <div class="total-title">本周销售总额</div>
-            <div class="total-value">￥50000.00</div>
+            <div class="total-title">本周营销总额</div>
+            <div class="total-value">￥{{homeFrontShow.weekTotalSales}}</div>
           </div>
         </el-col>
         <!--<el-col :span="6">-->
@@ -69,25 +69,25 @@
       <div style="text-align: center;margin-top: 5px"><span class="color-main">关注公号</span>，第一时间获取。</div>
     </el-card>-->
     <div class="un-handle-layout">
-      <div class="layout-title">待处理事务</div>
-      <div class="un-handle-content">
+      <div class="layout-title">待处理事务数量</div>
+      <div class="un-handle-content" v-if="homePendingTask">
         <el-row :gutter="20">
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">待付款订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.payOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">已完成订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.finishOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">待确认收货订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.unreceivedOrderCount}})</span>
             </div>
           </el-col>
         </el-row>
@@ -95,19 +95,19 @@
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">待发货订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.unfilledOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">新缺货登记</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.noStockOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">待处理退款申请</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.pendingRefundCount}})</span>
             </div>
           </el-col>
         </el-row>
@@ -115,19 +115,19 @@
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">已发货订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.deliveryOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">待处理退货订单</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.returnOrderCount}})</span>
             </div>
           </el-col>
           <el-col :span="8">
             <div class="un-handle-item">
               <span class="font-medium">广告位即将到期</span>
-              <span style="float: right" class="color-danger">(10)</span>
+              <span style="float: right" class="color-danger">({{homePendingTask.adsExpiresCount}})</span>
             </div>
           </el-col>
         </el-row>
@@ -137,26 +137,26 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <div class="out-border">
-            <div class="layout-title">商品总览</div>
-            <div style="padding: 40px">
+            <div class="layout-title">营销商品总览</div>
+            <div style="padding: 40px" v-if="homeProductShow">
               <el-row>
-                <el-col :span="6" class="color-danger overview-item-value">100</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">400</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">50</el-col>
-                <el-col :span="6" class="color-danger overview-item-value">500</el-col>
+                <el-col :span="6" class="color-danger overview-item-value">{{homeProductShow.soldOutCount}}</el-col>
+                <el-col :span="6" class="color-danger overview-item-value">{{homeProductShow.shelfGoodsCount}}</el-col>
+                <el-col :span="6" class="color-danger overview-item-value">{{homeProductShow.stockLessCount}}</el-col>
+                <el-col :span="6" class="color-danger overview-item-value">{{homeProductShow.totalCount}}</el-col>
               </el-row>
               <el-row class="font-medium">
                 <el-col :span="6" class="overview-item-title">已下架</el-col>
                 <el-col :span="6" class="overview-item-title">已上架</el-col>
                 <el-col :span="6" class="overview-item-title">库存紧张</el-col>
-                <el-col :span="6" class="overview-item-title">全部商品</el-col>
+                <el-col :span="6" class="overview-item-title">营销总量</el-col>
               </el-row>
             </div>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="out-border">
-            <div class="layout-title">用户总览</div>
+            <div class="layout-title">营销量总览</div>
             <div style="padding: 40px">
               <el-row>
                 <el-col :span="6" class="color-danger overview-item-value">100</el-col>
@@ -176,13 +176,13 @@
       </el-row>
     </div>
     <div class="statistics-layout">
-      <div class="layout-title">订单统计</div>
+      <div class="layout-title">营销订单统计</div>
       <el-row>
         <el-col :span="4">
           <div style="padding: 20px">
             <div>
               <div style="color: #909399;font-size: 14px">本月订单总数</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">10000</div>
+              <div style="color: #606266;font-size: 24px;padding: 10px 0">65354</div>
               <div>
                 <span class="color-success" style="font-size: 14px">+10%</span>
                 <span style="color: #C0C4CC;font-size: 14px">同比上月</span>
@@ -190,23 +190,23 @@
             </div>
             <div style="margin-top: 20px;">
               <div style="color: #909399;font-size: 14px">本周订单总数</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">1000</div>
+              <div style="color: #606266;font-size: 24px;padding: 10px 0">9982</div>
               <div>
                 <span class="color-danger" style="font-size: 14px">-10%</span>
                 <span style="color: #C0C4CC;font-size: 14px">同比上周</span>
               </div>
             </div>
             <div style="margin-top: 20px;">
-              <div style="color: #909399;font-size: 14px">本月销售总额</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">100000</div>
+              <div style="color: #909399;font-size: 14px">本月营销总额</div>
+              <div style="color: #606266;font-size: 24px;padding: 10px 0">185624</div>
               <div>
                 <span class="color-success" style="font-size: 14px">+10%</span>
                 <span style="color: #C0C4CC;font-size: 14px">同比上月</span>
               </div>
             </div>
             <div style="margin-top: 20px;">
-              <div style="color: #909399;font-size: 14px">本周销售总额</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">50000</div>
+              <div style="color: #909399;font-size: 14px">本周营销总额</div>
+              <div style="color: #606266;font-size: 24px;padding: 10px 0">49899</div>
               <div>
                 <span class="color-danger" style="font-size: 14px">-10%</span>
                 <span style="color: #C0C4CC;font-size: 14px">同比上周</span>
@@ -249,37 +249,42 @@
   import img_home_order from '@/assets/images/home_order.png';
   import img_home_today_amount from '@/assets/images/home_today_amount.png';
   import img_home_all_amount from '@/assets/images/home_all_amount.png';
+  import {getHomeProductShowData, getHomeFrontShowData, getHomePendingTaskDate} from '@/api/homeShow';
+
   const DATA_FROM_BACKEND = {
     columns: ['date', 'orderCount','orderAmount'],
     rows: [
-      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
-      {date: '2018-11-02', orderCount: 20, orderAmount: 2230},
-      {date: '2018-11-03', orderCount: 33, orderAmount: 3623},
-      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
-      {date: '2018-11-05', orderCount: 80, orderAmount: 8492},
-      {date: '2018-11-06', orderCount: 60, orderAmount: 6293},
-      {date: '2018-11-07', orderCount: 20, orderAmount: 2293},
-      {date: '2018-11-08', orderCount: 60, orderAmount: 6293},
-      {date: '2018-11-09', orderCount: 50, orderAmount: 5293},
-      {date: '2018-11-10', orderCount: 30, orderAmount: 3293},
-      {date: '2018-11-11', orderCount: 20, orderAmount: 2293},
-      {date: '2018-11-12', orderCount: 80, orderAmount: 8293},
-      {date: '2018-11-13', orderCount: 100, orderAmount: 10293},
-      {date: '2018-11-14', orderCount: 10, orderAmount: 1293},
-      {date: '2018-11-15', orderCount: 40, orderAmount: 4293}
+      {date: '2023-5-01', orderCount: 10, orderAmount: 1093},
+      {date: '2023-5-02', orderCount: 20, orderAmount: 2230},
+      {date: '2023-5-03', orderCount: 33, orderAmount: 3623},
+      {date: '2023-5-04', orderCount: 50, orderAmount: 6423},
+      {date: '2023-5-05', orderCount: 80, orderAmount: 8492},
+      {date: '2023-5-06', orderCount: 60, orderAmount: 6293},
+      {date: '2023-5-07', orderCount: 20, orderAmount: 2293},
+      {date: '2023-5-08', orderCount: 60, orderAmount: 6293},
+      {date: '2023-5-09', orderCount: 50, orderAmount: 5293},
+      {date: '2023-5-10', orderCount: 30, orderAmount: 3293},
+      {date: '2023-5-11', orderCount: 20, orderAmount: 2293},
+      {date: '2023-5-12', orderCount: 80, orderAmount: 8293},
+      {date: '2023-5-13', orderCount: 100, orderAmount: 10293},
+      {date: '2023-5-14', orderCount: 10, orderAmount: 1293},
+      {date: '2023-5-15', orderCount: 40, orderAmount: 4293}
     ]
   };
   export default {
     name: 'home',
     data() {
       return {
+        homeFrontShow: null,
+        homeProductShow: null,
+        homePendingTask: null,
         pickerOptions: {
           shortcuts: [{
             text: '最近一周',
             onClick(picker) {
               const end = new Date();
               let start = new Date();
-              start.setFullYear(2018);
+              start.setFullYear(2023);
               start.setMonth(10);
               start.setDate(1);
               end.setTime(start.getTime() + 3600 * 1000 * 24 * 7);
@@ -290,7 +295,7 @@
             onClick(picker) {
               const end = new Date();
               let start = new Date();
-              start.setFullYear(2018);
+              start.setFullYear(2023);
               start.setMonth(10);
               start.setDate(1);
               end.setTime(start.getTime() + 3600 * 1000 * 24 * 30);
@@ -312,21 +317,39 @@
         dataEmpty: false,
         img_home_order,
         img_home_today_amount,
-        img_home_all_amount
+        img_home_all_amount,
       }
     },
     created(){
       this.initOrderCountDate();
       this.getData();
+      this.getHomeProductShowData();
+      this.getFrontShowData();
+      this.getHomePendingTaskDate();
     },
     methods:{
+      getHomePendingTaskDate() {
+        getHomePendingTaskDate().then(response => {
+          this.homePendingTask = response.data;
+        })
+      },
+      getFrontShowData() {
+        getHomeFrontShowData().then(response => {
+          this.homeFrontShow = response.data;
+        })
+      },
+      getHomeProductShowData() {
+        getHomeProductShowData().then(response => {
+          this.homeProductShow = response.data;
+        })
+      },
       handleDateChange(){
         this.getData();
       },
       initOrderCountDate(){
         let start = new Date();
-        start.setFullYear(2018);
-        start.setMonth(10);
+        start.setFullYear(2023);
+        start.setMonth(4);
         start.setDate(1);
         const end = new Date();
         end.setTime(start.getTime() + 1000 * 60 * 60 * 24 * 7);
@@ -357,7 +380,7 @@
 
 <style scoped>
   .app-container {
-    margin-top: 40px;
+    margin-top: 1px;
     margin-left: 120px;
     margin-right: 120px;
   }
